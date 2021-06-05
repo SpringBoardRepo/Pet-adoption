@@ -1,11 +1,17 @@
 {% extends 'base.html' %}{% block content %}
 <div class="container">
-  <h1>Pets Details</h1>
-  <ul>
+  <h1 class="text-center border bg-danger bg-gradient">Pets Adoption</h1>
+  <div class="row">
     {% for pet in pets %}
-    <!-- <li><img src="{{pet.photo_url}}" alt="" />{{pet.name}}</li> -->
-    {{pet.name}} {% endfor %}
-  </ul>
-  <a href="/add_pet" class="btn btn-success">Add Pet</a>
+    <div class="col-md-4 mt-3">
+      <img src="{{pet.photo_url}}" class="img-thumbnail" alt="" />
+      {% if pet.available %}
+      <a href="/view_details/{{pet.id}}">{{pet.name}}</a> is Available {% else%}
+      <a href="/view_details/{{pet.id}}">{{pet.name}}</a> is Not Available {%
+      endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <a href="/pet/new" class="btn btn-success">Add Pet</a>
 </div>
 {% endblock %}
